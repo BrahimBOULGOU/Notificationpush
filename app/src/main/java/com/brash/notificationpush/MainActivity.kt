@@ -1,9 +1,11 @@
 package com.brash.notificationpush
 
+import android.R
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -28,9 +30,28 @@ class MainActivity : AppCompatActivity() {
            mNotifyManager.notify(NOTIFICATION_ID, notifyBuilder.build())
        }
 
+        cancelMe.setOnClickListener{
+            mNotifyManager.cancel(NOTIFICATION_ID)
+        }
 
+        updateMe.setOnClickListener{
+            updateNotif()
+        }
     }
 
+    private fun updateNotif(){
+       // val androidImage = BitmapFactory
+             //   .decodeResource(resources, R.drawable.ic_stat)
+        val notifyBuilder = getNotificationBuilder()
+        notifyBuilder.setStyle(NotificationCompat.BigPictureStyle()
+                //.bigPicture(androidImage)
+                .setBigContentTitle("Notification Updated!"))
+       // val updateIntent = Intent(ACTION_UPDATE_NOTIFICATION);
+       // val updatePendingIntent = PendingIntent.getBroadcast(this, NOTIFICATION_ID, updateIntent, PendingIntent.FLAG_ONE_SHOT)
+       // notifyBuilder.addAction(R.drawable.ic_stat, "Update Notification", updatePendingIntent);
+        mNotifyManager.notify(NOTIFICATION_ID, notifyBuilder.build())
+
+    }
     private fun createNotifChannel(){
         mNotifyManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
