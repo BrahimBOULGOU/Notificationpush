@@ -20,6 +20,11 @@ platform :android do
   lane :test do
     gradle(task: "test")
   end
+desc "Capture Screen"
+lane :capture_screen do
+  gradle(task: "clean assembleDebug assembleAndroidTest")
+  screengrab
+end 
 
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
