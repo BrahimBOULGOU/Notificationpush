@@ -1,19 +1,17 @@
 package com.brash.notificationpush
 
-import android.R
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_principal.*
 
 
-class MainActivity : AppCompatActivity() {
+class PrinciplActivity : AppCompatActivity() {
 
     val PRIMARY_CHANNEL_ID = "primary_notification_channel"
     val NOTIFICATION_ID = 0
@@ -22,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_principal)
         createNotifChannel()
 
        notifyMe.setOnClickListener{
@@ -67,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getNotificationBuilder(): NotificationCompat.Builder{
-        val notificationIntent = Intent(this, MainActivity::class.java)
+        val notificationIntent = Intent(this, PrinciplActivity::class.java)
         val  notificationPendingIntent = PendingIntent.getActivity(this, NOTIFICATION_ID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notifyBuilder = NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID).apply {
